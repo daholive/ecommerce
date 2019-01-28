@@ -67,13 +67,11 @@ $app->post("/admin/products/:idproduct", function($idproduct) {
 
 	$product->get((int)$idproduct);
 
-	print_r($_FILES["file"]);
-	die();
 	$product->setData($_POST);
 	
 	$product->save();
 	
-	$product->setPhoto($_FILES["file"]);
+	if($_FILES["file"]["name"] !== "") $product->setPhoto($_FILES["file"]);
 
 	header('Location: /admin/products');
 	exit;
