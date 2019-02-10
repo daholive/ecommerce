@@ -29,10 +29,8 @@
                 <div class="footer-menu">
                     <h2 class="footer-wid-title">Categorias</h2>
                     <ul>
-                        <li><a href="#">Android</a></li>
-                        <li><a href="#">Apple</a></li>
-                        <li><a href="#">Motorola</a></li>
-                        <li><a href="#">Samsung</a></li>
+                        <?php require $this->checkTemplate("categories-menu");?>
+
                     </ul>
                 </div>
             </div>
