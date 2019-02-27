@@ -30,6 +30,7 @@ class User extends Model {
 
     public static function checklogin($inadmin = true)
     {
+        $retorno = '';
 
         if (
             !isset($_SESSION[User::SESSION])
@@ -40,23 +41,24 @@ class User extends Model {
         ) {
 
             // não está logado
-            return false;
+            $retorno = false;
         } else {
 
             if( $inadmin === true && (bool)$_SESSION[User::SESSION]['inadmin'] === true) {
 
-                return true;
+                $retorno = true;
 
             } else if ( $inadmin === false) {
 
-                return true;
+                $retorno = false;
 
             } else {
 
-                return false;
+                $retorno = false;
             }
         }
 
+        return $retorno;
     }
 
     public static function login($login, $password)
@@ -64,7 +66,7 @@ class User extends Model {
 
         $sql = new Sql();
 
-        $results = $sql->select("SELECT * FROM tb_users WHERE deslogin = :LOGIN", array(
+        $results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b ON a.idperson = b.idperson WHERE deslogin = :LOGIN", array(
             ":LOGIN"=>$login
         ));
 
