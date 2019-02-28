@@ -140,6 +140,8 @@ class User extends Model {
             ":iduser"=>$iduser
         ));
 
+        $data = $results[0];
+
         $data['desperson'] = utf8_encode($data['desperson']);
 
         $this->setData($results[0]);
@@ -181,6 +183,7 @@ class User extends Model {
         ", array(
             ":email"=>$email
         ));
+
         if (count($results) === 0)
         {
             throw new \Exception("Não foi possível recuperar a senha.");
@@ -203,9 +206,9 @@ class User extends Model {
                 $code = openssl_encrypt($dataRecovery['idrecovery'], 'aes-256-cbc', User::SECRET, 0, $iv);
                 $result = base64_encode($iv.$code);
                 if ($inadmin === true) {
-                    $link = "http://www.hcodecommerce.com.br/admin/forgot/reset?code=$result";
+                    $link = "http://localhost/admin/forgot/reset?code=$result";
                 } else {
-                    $link = "http://www.hcodecommerce.com.br/forgot/reset?code=$result";
+                    $link = "http://localhost/forgot/reset?code=$result";
                 }
                 $mailer = new Mailer($data['desemail'], $data['desperson'], "Redefinir senha da Hcode Store", "forgot", array(
                     "name"=>$data['desperson'],
@@ -224,6 +227,7 @@ class User extends Model {
          $iv = mb_substr($result, 0, openssl_cipher_iv_length('aes-256-cbc'), '8bit');;
          $idrecovery = openssl_decrypt($code, 'aes-256-cbc', User::SECRET, 0, $iv);
          $sql = new Sql();
+
          $results = $sql->select("
              SELECT *
              FROM tb_userspasswordsrecoveries a
@@ -238,6 +242,7 @@ class User extends Model {
          ", array(
              ":idrecovery"=>$idrecovery
          ));
+
          if (count($results) === 0)
          {
              throw new \Exception("Não foi possível recuperar a senha.");
