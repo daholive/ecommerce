@@ -21,9 +21,11 @@
 							<div class="row">
 								<div class="col-md-12">
 
+									{if="$error != ''"}
 									<div class="alert alert-danger">
-										Error!
+											{$error}
 									</div>
+									{/if}
 
 									<div class="woocommerce-billing-fields">
 										<h3>Endereço de entrega</h3>
@@ -70,16 +72,16 @@
 													</tr>
 												</thead>
 												<tbody>
-
+													{loop="$products"}
 													<tr class="cart_item">
 														<td class="product-name">
-															Ship Your Idea <strong class="product-quantity">× 1</strong>
+															{$value.desproduct} <strong class="product-quantity">× {$value.nrqtd}</strong>
 														</td>
 														<td class="product-total">
-															<span class="amount">$700.00</span>
+															<span class="amount">{function="formatPrice($value.vltotal)"}</span>
 														</td>
-                                                    </tr>
-
+                          </tr>
+													{/loop}
 												</tbody>
 												<tfoot>
 													<tr class="cart-subtotal">
