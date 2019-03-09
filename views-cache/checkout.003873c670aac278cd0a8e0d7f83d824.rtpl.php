@@ -1,5 +1,4 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?>
-
 <div class="product-big-title-area">
 	<div class="container">
 		<div class="row">
@@ -71,16 +70,16 @@
 													</tr>
 												</thead>
 												<tbody>
-                                                    
+
 													<tr class="cart_item">
 														<td class="product-name">
-															Ship Your Idea <strong class="product-quantity">× 1</strong> 
+															Ship Your Idea <strong class="product-quantity">× 1</strong>
 														</td>
 														<td class="product-total">
 															<span class="amount">$700.00</span>
 														</td>
                                                     </tr>
-                                                    
+
 												</tbody>
 												<tfoot>
 													<tr class="cart-subtotal">
