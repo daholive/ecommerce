@@ -177,7 +177,7 @@ class Order extends Model {
             ORDER BY a.dtregister DESC
             LIMIT $start, $itemsPerPage;
         ", [
-           ':search'=>'%'.$search.'%'
+           ':search'=>'%'.$search.'%',
            ':id'=> $search
         ]);
 
